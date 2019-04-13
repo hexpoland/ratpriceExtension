@@ -1,10 +1,60 @@
+<html>
+
+
 
 <body>
-    <div>
+    <div class="container">
+        <!-- <h1>Rational Price Extension</h1> -->
         <input type="text" id="numer">
-        <button id="ok">Szukaj</button>
+        <button id="ok">+</button>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    
+    <div class="lista">
+        <ul id="itemsList">
+            <li>
+
+            </li>
+        </ul>
+    </div>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
+    <script src="jquery.min.js"></script>
+
     <script src="index.js"></script>
+
+    <style>
+        div {
+            top: 0;
+            left: 0;
+            width: 280px;
+
+            position: relative;
+
+        }
+
+        #ok {
+            font-size: 1.2em;
+            width: 32px;
+            height: 32px;
+            border-radius: 45px;
+            color: gray;
+        }
+
+        #ok:focus {
+            outline: none;
+        }
+
+        input {
+            border: none;
+            height: 1.9em;
+            font-size: 1.9em;
+            border-bottom: 1px solid rgb(170, 170, 170);
+        }
+
+        input:focus {
+            outline: none;
+            border-bottom: 1px solid rgb(97, 97, 97);
+        }
+    </style>
+
 </body>
+
+</html>

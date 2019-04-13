@@ -21,10 +21,15 @@ chrome.runtime.onMessage.addListener(
         });
     });
 
+$("#ok").on('click', () => {
 
-$('.guitable_content').dblclick(() => {
-    alert('click table element')
-});
+    if ($("#numer").val().length > 7) {
+
+
+        szukaj($("#numer").val())
+    }
+})
+
 
 chrome.contextMenus.onClicked.addListener((clickData) => {
     if (clickData.menuItemId == "CennikRational") {
@@ -33,8 +38,38 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
     }
 })
 var replace = '';
+let notif = {
+
+    options: {
+        type: "list",
+        title: "Rational Price Extension",
+        message: "",
+        items: [{
+            title: "jseoijfowiejew",
+            message: "wqkdpokdpokqpdokqpow"
+        }],
+        iconUrl: "img/notif.png"
+
+    },
+    show() {
+        chrome.notifications.create(this.options, () => {
+            console.log('notif done')
+        })
+        // alert(`Hello notif ${this.options.title}`)
+    }
+
+}
+
+function toList(el) {
+    $('#itemsList li:last').append('<li>' + el.properties.numer + ' ' + el.properties.nazwa + ' ' + el.properties.cena + '</li>')
+}
 
 function szukaj(findPart) {
+    // notif.show();
+    $('#myModal').show();
+    if (findPart.lenght < 8) {
+        return;
+    }
     findPart = findPart.toUpperCase();
     let tmep;
     let founded = parts.filter((el, index, arr) => {
@@ -44,11 +79,22 @@ function szukaj(findPart) {
     console.log(founded)
     founded.forEach((el, ind, arr) => {
         if (el.properties.cena != '0') {
-            alert('Znalaziono ' + el.properties.nazwa + 'cena: ' + el.properties.cena)
+            // notif.options.items[0].title = el.properties.numer;
+            // notif.options.items[0].message = el.properties.nazwa + '   ' + el.properties.cena;
+            // notif.show();
+            toList(el)
+            alert(
+                'Rational Price Extension\n\n' +
+                "\tNumer:  " + el.properties.numer + "\n" +
+                '\tNazwa:  ' + el.properties.nazwa + '\n' +
+                '\tCena:   ' + el.properties.cena + 'zł netto\n\n' +
+                '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n'
+            );
+            return;
         } else {
             if (el.properties.Informacje) {
-                console.log('zastopione')
-                let newNumber = el.properties.Informacje.match(/\d\d.\d\d.\d\d\d/g)
+                console.log('zastapione')
+                let newNumber = el.properties.Informacje.match(/\d\d.\d\d.\d\d\d[A-Z]?/g)
                 console.log(newNumber)
                 temp = parts.filter((el) => {
                     return el.properties.numer.match(newNumber)
@@ -56,11 +102,12 @@ function szukaj(findPart) {
                 temp.forEach((el) => {
                     if (el.properties.cena != '0') {
                         // alert('Znalaziono:  ' + el.properties.nazwa + ' Cena: ' + el.properties.cena)
+                        toList(el)
                         alert(
                             'Rational Price Extension\n\n' +
                             "\tNumer:  " + el.properties.numer + "\n" +
                             '\tNazwa:  ' + el.properties.nazwa + '\n' +
-                            '\tCena:   ' + el.properties.cena + '\n\n' +
+                            '\tCena:   ' + el.properties.cena + 'zł netto\n\n' +
                             '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n'
                         );
                     }

@@ -8,14 +8,19 @@
     "persistent": false
   },
   "permissions": [
-    //   "browser",
+    "<all_urls>",
+    "notifications",
     "background",
     "activeTab",
     "storage",
     "tabs",
     "contextMenus"
   ],
-
+  "icons": {
+    "16": "img/icon16.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
+  },
 
   "browser_action": {
     "default_popup": "index.html"
