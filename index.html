@@ -1,9 +1,20 @@
 <html>
 
+<head>
+    <meta charset="UTF-8">
 
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+</head>
 
 <body>
+    <div class="header">
+        <img src="img/rat.png" alt="" width="30" height="34">
+    </div>
+
     <div class="container">
+
+        <!-- <h2>Rational Price Extension</h2> -->
         <!-- <h1>Rational Price Extension</h1> -->
         <input type="text" id="numer">
         <button id="ok">+</button>
@@ -15,19 +26,89 @@
             </li>
         </ul>
     </div>
+    <div class='btn'>
+        <button class='export'>Export</button>
+        <button class='clear'>Clear</button>
+    </div>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
     <script src="jquery.min.js"></script>
 
     <script src="index.js"></script>
 
     <style>
+        .header {
+            display: flex;
+
+            justify-content: center;
+
+
+        }
+
+        .btn {
+            padding-top: 11px;
+
+            border-top: 1px solid rgb(224, 224, 224);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+
+        }
+
+        .container {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .export {
+            font-size: 1.2em;
+            font-family: 'Nunito', sans-serif;
+            background-color: rgb(87, 121, 250);
+            color: white;
+
+            bottom: 2;
+            border: 0px solid grey;
+            border-radius: 9px;
+            width: 80px;
+            height: 30px;
+        }
+
+        .clear {
+            font-size: 1.2em;
+            font-family: 'Nunito', sans-serif;
+            background-color: rgb(255, 63, 63);
+            color: white;
+            margin-left: 10px;
+
+            bottom: 2;
+            border: 0px solid grey;
+            border-radius: 9px;
+            width: 80px;
+            height: 30px;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
         div {
-            top: 0;
-            left: 0;
-            width: 280px;
+            font-family: 'Nunito', sans-serif;
+
+            width: 420px;
+
+            /* position: relative; */
+
+        }
+
+        .lista {
 
             position: relative;
 
+            left: -30;
         }
 
         #ok {
@@ -43,15 +124,26 @@
         }
 
         input {
+            color: rgb(80, 80, 80);
+            left: 100px;
+            font-family: 'Nunito', sans-serif;
+            width: 150px;
             border: none;
             height: 1.9em;
             font-size: 1.9em;
-            border-bottom: 1px solid rgb(170, 170, 170);
+            border-bottom: 1px solid rgb(221, 221, 221);
         }
 
         input:focus {
             outline: none;
-            border-bottom: 1px solid rgb(97, 97, 97);
+            border-bottom: 1px solid rgb(172, 172, 172);
+        }
+
+        ul {
+            color: rgb(80, 80, 80);
+            font-size: 1.2em;
+
+            list-style-type: none;
         }
     </style>
 

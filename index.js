@@ -1,4 +1,5 @@
-console.log('Index js zaladowany')
+console.log('Index js zaladowany');
+
 var parts = []
 // $('#ok').hide();
 var cennik = $.getJSON('cennik.json', (e) => {
@@ -8,6 +9,12 @@ var cennik = $.getJSON('cennik.json', (e) => {
 
 
 });
+
+for (key in localStorage) {
+    if (key !== 'length' && key !== 'key' && key !== 'getItem' && key !== 'setItem' && key !== 'clear' && key !== 'removeItem') {
+        $('#itemsList li:last').append('<li>' + key + ' ' + localStorage.getItem(key) + '</li>')
+    }
+}
 
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
@@ -20,13 +27,18 @@ chrome.runtime.onMessage.addListener(
             farewell: "goodbye"
         });
     });
+$(".clear").on('click', () => {
+    localStorage.clear();
+    location.reload();
 
+})
 $("#ok").on('click', () => {
 
     if ($("#numer").val().length > 7) {
 
 
         szukaj($("#numer").val())
+        $('#numer').val('')
     }
 })
 
@@ -61,6 +73,8 @@ let notif = {
 }
 
 function toList(el) {
+    localStorage.setItem(el.properties.numer, el.properties.nazwa + ' ' + el.properties.cena + ',-')
+
     $('#itemsList li:last').append('<li>' + el.properties.numer + ' ' + el.properties.nazwa + ' ' + el.properties.cena + '</li>')
 }
 
@@ -87,7 +101,7 @@ function szukaj(findPart) {
                 'Rational Price Extension\n\n' +
                 "\tNumer:  " + el.properties.numer + "\n" +
                 '\tNazwa:  ' + el.properties.nazwa + '\n' +
-                '\tCena:   ' + el.properties.cena + 'zł netto\n\n' +
+                '\tCena:   ' + el.properties.cena + ',- netto\n\n' +
                 '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n'
             );
             return;
@@ -107,7 +121,7 @@ function szukaj(findPart) {
                             'Rational Price Extension\n\n' +
                             "\tNumer:  " + el.properties.numer + "\n" +
                             '\tNazwa:  ' + el.properties.nazwa + '\n' +
-                            '\tCena:   ' + el.properties.cena + 'zł netto\n\n' +
+                            '\tCena:   ' + el.properties.cena + ',- netto\n\n' +
                             '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n'
                         );
                     }
