@@ -11,12 +11,12 @@ var cennik = $.getJSON('cennik.json', (e) => {
 });
 
 for (key in localStorage) {
-    
+
     if (key !== 'length' && key !== 'key' && key !== 'getItem' && key !== 'setItem' && key !== 'clear' && key !== 'removeItem') {
         // $('#itemsList li:last').append('<li>' + key + ' ' + localStorage.getItem(key) + '</li>')
-        $('table tbody').append('<tr><td scope="row" data-label="Numer">'+key+'</td>'+
-        '<td data-label="Opis">'+localStorage.getItem(key)+'</td>'+
-        '<td><button id="remove"></><button id="send"></button></td></tr>')
+        $('table tbody').append('<tr><td scope="row" data-label="Numer">' + key + '</td>' +
+            '<td data-label="Opis">' + localStorage.getItem(key) + '</td>' +
+            '<td><button id="remove"></><button id="send"></button></td></tr>')
         // '<td data-label="Ilość">$842</td>'+
         // '<td data-label="Control">01/01/2016 - 01/31/2016</td>')
     }
@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener(
         });
     });
 
- // BUTTON EVENT
+// BUTTON EVENT
 $(".clear").on('click', () => {
     localStorage.clear();
     location.reload();
@@ -49,19 +49,21 @@ $("#ok").on('click', () => {
         $('#numer').val('')
     }
 })
-$('.export').on('click',()=>{
-    let fileData='';
+$('.export').on('click', () => {
+    let fileData = '';
 
-  
-  for (key in localStorage) {
-    if (key !== 'length' && key !== 'key' && key !== 'getItem' && key !== 'setItem' && key !== 'clear' && key !== 'removeItem') {
-        fileData=fileData+'1;'+key+'\r\n';
 
+    for (key in localStorage) {
+        if (key !== 'length' && key !== 'key' && key !== 'getItem' && key !== 'setItem' && key !== 'clear' && key !== 'removeItem') {
+            fileData = fileData + '1;' + key + '\r\n';
+
+        }
     }
-}
-let file=new Blob([fileData],{type: "text/plain;charset=utf-8"});
-let fileName=new Date().toJSON().slice(0,10).replace(/-/g,'_')+'_order.txt'
-saveAs(file,fileName)
+    let file = new Blob([fileData], {
+        type: "text/plain;charset=utf-8"
+    });
+    let fileName = new Date().toJSON().slice(0, 10).replace(/-/g, '_') + '_order.txt'
+    saveAs(file, fileName)
 
 })
 
@@ -172,7 +174,7 @@ function saveAs(blob, fileName) {
 
     // On Edge, revokeObjectURL should be called only after
     // a.click() has completed, atleast on EdgeHTML 15.15048
-    setTimeout(function() {
+    setTimeout(function () {
         window.URL.revokeObjectURL(url);
     }, 1000);
 }

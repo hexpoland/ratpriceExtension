@@ -1,278 +1,283 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
 </head>
 
 <body>
-    <div class="header">
-        <img src="img/rat.png" alt="" width="30" height="34">
-    </div>
+  <div class="header">
+    <img src="img/rat.png" alt="" width="30" height="34">
+  </div>
 
-    <div class="container">
+  <div class="container">
 
-        <!-- <h2>Rational Price Extension</h2> -->
-        <!-- <h1>Rational Price Extension</h1> -->
-        <input type="text" id="numer">
-        <button id="ok">+</button>
-    </div>
-    <div class="lista">
-        <!-- <ul id="itemsList">
+    <!-- <h2>Rational Price Extension</h2> -->
+    <!-- <h1>Rational Price Extension</h1> -->
+    <input type="text" id="numer">
+    <button id="ok">+</button>
+  </div>
+  <div class="lista">
+    <!-- <ul id="itemsList">
             <li>
 
             </li>
         </ul> -->
-        <table>
-            
-            &nbsp&nbsp&nbsp
-            <thead>
-              <tr>
-                <th scope="col">Numer</th>
-                <th scope="col">Opis</th>
-               
-              </tr>
-            </thead>
-            <tbody>
-             
-              <!-- <tr>
+    <table>
+
+      &nbsp&nbsp&nbsp
+      <thead>
+        <tr>
+          <th scope="col">Numer</th>
+          <th scope="col">Opis</th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- <tr>
                 <td scope="row" data-label="Numer">Visa - 3412</td>
                 <td data-label="Nazwa">02/01/2016</td>
                 <td data-label="Ilość">$842</td>
                 <td data-label="Control">01/01/2016 - 01/31/2016</td>
               </tr> -->
-            </tbody>
-          </table>
-    </div>
-    <div class='btn'>
-        <button class='export'>Export</button>
-        <button class='clear'>Clear</button>
-    </div>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
-    <script src="jquery.min.js"></script>
+      </tbody>
+    </table>
+  </div>
+  <div class='btn'>
+    <button class='export'>Export</button>
+    <button class='clear'>Clear</button>
+  </div>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
+  <script src="jquery.min.js"></script>
 
-    <script src="index.js"></script>
+  <script src="index.js"></script>
 
-    <style>
-        .header {
-            display: flex;
+  <style>
+    .header {
+      display: flex;
 
-            justify-content: center;
-
-
-        }
-
-        .btn {
-            padding-top: 11px;
-
-            border-top: 1px solid rgb(224, 224, 224);
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+      justify-content: center;
 
 
-        }
+    }
 
-        .container {
+    .btn {
+      padding-top: 11px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+      border-top: 1px solid rgb(224, 224, 224);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-        }
 
-        .export {
-            font-size: 1.2em;
-            font-family: 'Nunito', sans-serif;
-            background-color: rgb(87, 121, 250);
-            color: white;
+    }
 
-            bottom: 2;
-            border: 0px solid grey;
-            border-radius: 9px;
-            width: 80px;
-            height: 30px;
-        }
+    .container {
 
-        .clear {
-            font-size: 1.2em;
-            font-family: 'Nunito', sans-serif;
-            background-color: rgb(255, 63, 63);
-            color: white;
-            margin-left: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-            bottom: 2;
-            border: 0px solid grey;
-            border-radius: 9px;
-            width: 80px;
-            height: 30px;
-        }
+    }
 
-        button:focus {
-            outline: none;
-        }
+    .export {
+      font-size: 1.2em;
+      font-family: 'Nunito', sans-serif;
+      background-color: rgb(87, 121, 250);
+      color: white;
 
-        div {
-            font-family: 'Nunito', sans-serif;
+      bottom: 2;
+      border: 0px solid grey;
+      border-radius: 9px;
+      width: 80px;
+      height: 30px;
+    }
 
-            width: 420px;
+    .clear {
+      font-size: 1.2em;
+      font-family: 'Nunito', sans-serif;
+      background-color: rgb(255, 63, 63);
+      color: white;
+      margin-left: 10px;
 
-            /* position: relative; */
+      bottom: 2;
+      border: 0px solid grey;
+      border-radius: 9px;
+      width: 80px;
+      height: 30px;
+    }
 
-        }
+    button:focus {
+      outline: none;
+    }
 
-        .lista {
+    div {
+      font-family: 'Nunito', sans-serif;
 
-            position: relative;
+      width: 420px;
 
-            left: 0;
-        }
+      /* position: relative; */
 
-        #ok {
-            font-size: 1.2em;
-            width: 32px;
-            height: 32px;
-            border-radius: 45px;
-            color: gray;
-        }
+    }
 
-        #ok:focus {
-            outline: none;
-        }
+    .lista {
 
-        input {
-            color: rgb(80, 80, 80);
-            left: 100px;
-            font-family: 'Nunito', sans-serif;
-            width: 150px;
-            border: none;
-            height: 1.9em;
-            font-size: 1.9em;
-            border-bottom: 1px solid rgb(221, 221, 221);
-        }
+      position: relative;
 
-        input:focus {
-            outline: none;
-            border-bottom: 1px solid rgb(172, 172, 172);
-        }
+      left: 0;
+    }
 
-        ul {
-            color: rgb(80, 80, 80);
-            font-size: 1.2em;
+    #ok {
+      font-size: 1.2em;
+      width: 32px;
+      height: 32px;
+      border-radius: 45px;
+      color: gray;
+    }
 
-            list-style-type: none;
-        }
-        #remove{
-            width: 32px;
-            height: 32px;
-            opacity: 0.3;
-            border-radius: 45px;
-            background:rgb(255, 255, 255) url('img/remove.png') no-repeat center center;
-            border:none;
-            margin-right: 32px;
-        }
-        #remove:hover{
-            opacity: 1;
-        }
-        #send{
-            opacity: 0.5;
-            width: 32px;
-            height: 32px;
-            border-radius: 45px;
-            border:none;
-            background:rgb(255, 255, 255) url('img/send27.png') no-repeat center center;
-        }
-        #send:hover{
-            opacity: 1;
-        }
-table {
-  border: 1px solid #ccc;
-  border-collapse: collapse;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  table-layout: fixed;
-}
+    #ok:focus {
+      outline: none;
+    }
 
-table caption {
-  font-size: 1em;
-  margin: .1em 0 .9em;
-}
+    input {
+      color: rgb(80, 80, 80);
+      left: 100px;
+      font-family: 'Nunito', sans-serif;
+      width: 150px;
+      border: none;
+      height: 1.9em;
+      font-size: 1.9em;
+      border-bottom: 1px solid rgb(221, 221, 221);
+    }
 
-table tr {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  padding: .1em;
-}
+    input:focus {
+      outline: none;
+      border-bottom: 1px solid rgb(172, 172, 172);
+    }
 
-table th,
-table td {
-  padding: .625em;
-  text-align: center;
-}
+    ul {
+      color: rgb(80, 80, 80);
+      font-size: 1.2em;
 
-table th {
-  font-size: .85em;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
+      list-style-type: none;
+    }
 
-@media screen and (max-width: 600px) {
-  table {
-    border: 0;
+    #remove {
+      width: 32px;
+      height: 32px;
+      opacity: 0.3;
+      border-radius: 45px;
+      background: rgb(255, 255, 255) url('img/remove.png') no-repeat center center;
+      border: none;
+      margin-right: 32px;
+    }
 
-  }
+    #remove:hover {
+      opacity: 1;
+    }
 
-  table caption {
-    font-size: 1em;
-  }
-  
-  table thead {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
-  
-  table tr {
-    border-bottom: 1px solid #ddd;
-    border-radius: 4px;
-    display: block;
-    margin-bottom: .625em;
-  }
-  
-  table td {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    font-size: .8em;
-    text-align: right;
-  }
-  
-  table td::before {
-    /*
+    #send {
+      opacity: 0.5;
+      width: 32px;
+      height: 32px;
+      border-radius: 45px;
+      border: none;
+      background: rgb(255, 255, 255) url('img/send27.png') no-repeat center center;
+    }
+
+    #send:hover {
+      opacity: 1;
+    }
+
+    table {
+      border: 1px solid #ccc;
+      border-collapse: collapse;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    table caption {
+      font-size: 1em;
+      margin: .1em 0 .9em;
+    }
+
+    table tr {
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: .1em;
+    }
+
+    table th,
+    table td {
+      padding: .625em;
+      text-align: center;
+    }
+
+    table th {
+      font-size: .85em;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    @media screen and (max-width: 600px) {
+      table {
+        border: 0;
+
+      }
+
+      table caption {
+        font-size: 1em;
+      }
+
+      table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+
+      table tr {
+        border-bottom: 1px solid #ddd;
+        border-radius: 4px;
+        display: block;
+        margin-bottom: .625em;
+      }
+
+      table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+      }
+
+      table td::before {
+        /*
     * aria-label has no advantage, it won't be read inside a table
     content: attr(aria-label);
     */
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    color: rgb(156, 156, 156);
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        color: rgb(156, 156, 156);
 
-  }
-  
-  table td:last-child {
-      text-align-last: center;
-    border-bottom: 0;
-  }
-}
-    </style>
+      }
+
+      table td:last-child {
+        text-align-last: center;
+        border-bottom: 0;
+      }
+    }
+  </style>
 
 </body>
 
