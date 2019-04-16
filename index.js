@@ -27,6 +27,8 @@ chrome.runtime.onMessage.addListener(
             farewell: "goodbye"
         });
     });
+
+ // BUTTON EVENT
 $(".clear").on('click', () => {
     localStorage.clear();
     location.reload();
@@ -41,6 +43,23 @@ $("#ok").on('click', () => {
         $('#numer').val('')
     }
 })
+$('.export').on('click',()=>{
+    let fileData='';
+
+  
+  for (key in localStorage) {
+    if (key !== 'length' && key !== 'key' && key !== 'getItem' && key !== 'setItem' && key !== 'clear' && key !== 'removeItem') {
+        fileData=fileData+'1;'+key+'\r\n';
+
+    }
+}
+let file=new Blob([fileData],{type: "text/plain;charset=utf-8"});
+let fileName=new Date().toJSON().slice(0,10).replace(/-/g,'_')+'_order.txt'
+saveAs(file,fileName)
+
+})
+
+// BUTON EVENT
 
 
 chrome.contextMenus.onClicked.addListener((clickData) => {
@@ -130,4 +149,24 @@ function szukaj(findPart) {
         }
     })
 
+}
+
+function saveAs(blob, fileName) {
+    var url = window.URL.createObjectURL(blob);
+
+    var anchorElem = document.createElement("a");
+    anchorElem.style = "display: none";
+    anchorElem.href = url;
+    anchorElem.download = fileName;
+
+    document.body.appendChild(anchorElem);
+    anchorElem.click();
+
+    document.body.removeChild(anchorElem);
+
+    // On Edge, revokeObjectURL should be called only after
+    // a.click() has completed, atleast on EdgeHTML 15.15048
+    setTimeout(function() {
+        window.URL.revokeObjectURL(url);
+    }, 1000);
 }
