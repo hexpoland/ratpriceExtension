@@ -56,6 +56,9 @@
     <script src="index.js"></script>
 
     <style>
+        ::-webkit-scrollbar { 
+    display: none; 
+}
         .header {
             display: flex;
 
@@ -100,7 +103,7 @@
         .clear {
             font-size: 1.2em;
             font-family: 'Nunito', sans-serif;
-            background-color: rgb(255, 63, 63);
+            background-color: rgb(190, 37, 37);
             color: white;
             margin-left: 10px;
 
@@ -137,6 +140,7 @@
             height: 32px;
             border-radius: 45px;
             color: gray;
+            background-color: white;
         }
 
         #ok:focus {
@@ -165,7 +169,7 @@
 
             list-style-type: none;
         }
-        #remove{
+        .remove{
             width: 32px;
             height: 32px;
             opacity: 0.3;
@@ -174,10 +178,10 @@
             border:none;
             margin-right: 32px;
         }
-        #remove:hover{
+        .remove:hover{
             opacity: 1;
         }
-        #send{
+        .send{
             opacity: 0.5;
             width: 32px;
             height: 32px;
@@ -185,7 +189,7 @@
             border:none;
             background:rgb(255, 255, 255) url('img/send27.png') no-repeat center center;
         }
-        #send:hover{
+        .send:hover{
             opacity: 1;
         }
 table {
@@ -251,7 +255,7 @@ table th {
   table td {
     border-bottom: 1px solid #ddd;
     display: block;
-    font-size: .8em;
+    font-size: .9em;
     text-align: right;
   }
   
@@ -266,9 +270,16 @@ table th {
     color: rgb(156, 156, 156);
 
   }
-  
+  table td:first-child {
+      margin: -px;
+      border-radius: 4px;
+      color:rgb(48, 48, 48);
+      font-size: 0.9em;
+      background-color: rgb(231, 231, 231);
+  }
   table td:last-child {
       text-align-last: center;
+      
     border-bottom: 0;
   }
 }

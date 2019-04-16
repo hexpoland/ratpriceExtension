@@ -1,4 +1,5 @@
 console.log('Index js zaladowany');
+// document.addEventListener('contextmenu', event => event.preventDefault());
 
 var parts = []
 // $('#ok').hide();
@@ -16,7 +17,7 @@ for (key in localStorage) {
         // $('#itemsList li:last').append('<li>' + key + ' ' + localStorage.getItem(key) + '</li>')
         $('table tbody').append('<tr><td scope="row" data-label="Numer">'+key+'</td>'+
         '<td data-label="Opis">'+localStorage.getItem(key)+'</td>'+
-        '<td><button id="remove"></><button id="send"></button></td></tr>')
+        '<td><button class="remove"></><button class="send"></button></td></tr>')
         // '<td data-label="Ilość">$842</td>'+
         // '<td data-label="Control">01/01/2016 - 01/31/2016</td>')
     }
@@ -64,6 +65,11 @@ let fileName=new Date().toJSON().slice(0,10).replace(/-/g,'_')+'_order.txt'
 saveAs(file,fileName)
 
 })
+$('td .remove').on('click',(e)=>{
+    let removeKey=$(e.currentTarget.parentNode.parentNode).find('td:first-Child')[0].innerHTML;
+    localStorage.removeItem(removeKey);
+    console.log(e.currentTarget.parentNode.parentNode.remove())
+})
 
 // BUTON EVENT
 
@@ -98,14 +104,19 @@ let notif = {
 }
 
 function toList(el) {
-    localStorage.setItem(el.properties.numer, el.properties.nazwa + ' ' + el.properties.cena + ',-')
-
+    localStorage.setItem(el.properties.numer, el.properties.nazwa + ' ' + el.properties.cena + ',-');
+    let numer1=el.properties.numer;
+    let nazwa=el.properties.nazwa+'    '+el.properties.cena;
+    chrome.storage.sync.set({[numer1]:nazwa}, function() {
+        console.log('Value is set to ');
+      });
     $('#itemsList li:last').append('<li>' + el.properties.numer + ' ' + el.properties.nazwa + ' ' + el.properties.cena + '</li>')
+    //location.reload();
 }
 
 function szukaj(findPart) {
     // notif.show();
-    $('#myModal').show();
+    //$('#myModal').show();
     if (findPart.lenght < 8) {
         return;
     }
@@ -116,7 +127,7 @@ function szukaj(findPart) {
 
     })
     console.log(founded)
-    founded.forEach((el, ind, arr) => {
+    founded.every((el, ind, arr) => {
         if (el.properties.cena != '0') {
             // notif.options.items[0].title = el.properties.numer;
             // notif.options.items[0].message = el.properties.nazwa + '   ' + el.properties.cena;
