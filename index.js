@@ -11,8 +11,14 @@ var cennik = $.getJSON('cennik.json', (e) => {
 });
 
 for (key in localStorage) {
+    
     if (key !== 'length' && key !== 'key' && key !== 'getItem' && key !== 'setItem' && key !== 'clear' && key !== 'removeItem') {
-        $('#itemsList li:last').append('<li>' + key + ' ' + localStorage.getItem(key) + '</li>')
+        // $('#itemsList li:last').append('<li>' + key + ' ' + localStorage.getItem(key) + '</li>')
+        $('table tbody').append('<tr><td scope="row" data-label="Numer">'+key+'</td>'+
+        '<td data-label="Opis">'+localStorage.getItem(key)+'</td>'+
+        '<td><button id="remove"></><button id="send"></button></td></tr>')
+        // '<td data-label="Ilość">$842</td>'+
+        // '<td data-label="Control">01/01/2016 - 01/31/2016</td>')
     }
 }
 
