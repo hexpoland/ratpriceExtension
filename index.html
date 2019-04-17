@@ -148,9 +148,13 @@
         color: white;
         border:none;
       }
-      @keyframes inputAnim{
+      @keyframes inputAnimIn{
         from{width:100px;}
         to{width:150px;}
+      }
+      @keyframes inputAnimOut{
+        from{width:150px;}
+        to{width:100px;}
       }
       input {
         color: rgb(80, 80, 80);
@@ -166,7 +170,7 @@
       input:focus {
         
         outline: none;
-        animation: inputAnim;
+        animation: inputAnimIn;
         animation-duration: 2s;
         width:150px;
         border-bottom: 1px solid rgb(172, 172, 172);
@@ -174,6 +178,7 @@
       input:not(:placeholder-shown) {
        width: 150px;
       }
+      
       
       ul {
         color: rgb(80, 80, 80);

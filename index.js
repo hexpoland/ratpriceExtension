@@ -9,29 +9,8 @@ var cennik = $.getJSON("cennik.json", e => {
   console.log(parts);
 });
 
-for (key in localStorage) {
-  if (
-    key !== "length" &&
-    key !== "key" &&
-    key !== "getItem" &&
-    key !== "setItem" &&
-    key !== "clear" &&
-    key !== "removeItem"
-  ) {
-    // $('#itemsList li:last').append('<li>' + key + ' ' + localStorage.getItem(key) + '</li>')
-    $("table tbody").append(
-      '<tr><td scope="row" data-label="Numer">' +
-        key +
-        "</td>" +
-        '<td data-label="Opis">' +
-        localStorage.getItem(key) +
-        "</td>" +
-        '<td><button class="remove"></><button class="send"></button></td></tr>'
-    );
-    // '<td data-label="Ilość">$842</td>'+
-    // '<td data-label="Control">01/01/2016 - 01/31/2016</td>')
-  }
-}
+
+loadFromStorage();
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   console.log(
@@ -50,6 +29,11 @@ $(".clear").on("click", () => {
   localStorage.clear();
   location.reload();
 });
+$('input').on('keypress',(e)=>{
+  if(e.which===13){
+    $('#ok').click()
+  }
+})
 $("#ok").on("click", () => {
   if ($("#numer").val().length > 7) {
     szukaj($("#numer").val());
@@ -138,6 +122,8 @@ function toList(el) {
   chrome.storage.sync.set({ [numer1]: nazwa }, function() {
     console.log("Value is set to ");
   });
+  $("table tbody").empty();
+  loadFromStorage();
   $("#itemsList li:last").append(
     "<li>" +
       el.properties.numer +
@@ -147,7 +133,8 @@ function toList(el) {
       el.properties.cena +
       "</li>"
   );
-  location.reload();
+
+  // location.reload();
 }
 
 function szukaj(findPart) {
@@ -249,4 +236,30 @@ function saveAs(blob, fileName) {
   setTimeout(function() {
     window.URL.revokeObjectURL(url);
   }, 1000);
+}
+
+function loadFromStorage(){
+  for (key in localStorage) {
+    if (
+      key !== "length" &&
+      key !== "key" &&
+      key !== "getItem" &&
+      key !== "setItem" &&
+      key !== "clear" &&
+      key !== "removeItem"
+    ) {
+      // $('#itemsList li:last').append('<li>' + key + ' ' + localStorage.getItem(key) + '</li>')
+      $("table tbody").append(
+        '<tr><td scope="row" data-label="Numer">' +
+          key +
+          "</td>" +
+          '<td data-label="Opis">' +
+          localStorage.getItem(key) +
+          "</td>" +
+          '<td><button class="remove"></><button class="send"></button></td></tr>'
+      );
+      // '<td data-label="Ilość">$842</td>'+
+      // '<td data-label="Control">01/01/2016 - 01/31/2016</td>')
+    }
+  }
 }
