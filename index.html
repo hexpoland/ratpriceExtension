@@ -16,7 +16,7 @@
     <div class="container">
       <!-- <h2>Rational Price Extension</h2> -->
       <!-- <h1>Rational Price Extension</h1> -->
-      <input type="text" id="numer" />
+      <input type="text" id="numer" placeholder="numer" />
       <button id="ok">+</button>
     </div>
     <div class="lista">
@@ -57,6 +57,9 @@
       ::-webkit-scrollbar {
         display: none;
       }
+      ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+          color: rgb(211,211,211);
+}
       .header {
         display: flex;
 
@@ -145,12 +148,15 @@
         color: white;
         border:none;
       }
-
+      @keyframes inputAnim{
+        from{width:100px;}
+        to{width:150px;}
+      }
       input {
         color: rgb(80, 80, 80);
         left: 100px;
         font-family: "Nunito", sans-serif;
-        width: 150px;
+        width: 100px;
         border: none;
         height: 1.9em;
         font-size: 1.9em;
@@ -158,10 +164,17 @@
       }
 
       input:focus {
+        
         outline: none;
+        animation: inputAnim;
+        animation-duration: 2s;
+        width:150px;
         border-bottom: 1px solid rgb(172, 172, 172);
       }
-
+      input:not(:placeholder-shown) {
+       width: 150px;
+      }
+      
       ul {
         color: rgb(80, 80, 80);
         font-size: 1.2em;
