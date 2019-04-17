@@ -4,7 +4,7 @@
   "description": "h3x wolaqu@poczta.onet.pl",
   "background": {
     "pages": ["index.html"],
-    "scripts": ["background.js", "jquery.min.js", "index.js"],
+    "scripts": ["background.js", "jquery.min.js", "index.js","smtp.js"],
     "persistent": false
   },
   "permissions": [

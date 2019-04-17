@@ -1,290 +1,287 @@
 <html>
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-    <meta charset="UTF-8">
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito"
+      rel="stylesheet"
+    />
+  </head>
 
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-</head>
-
-<body>
+  <body>
     <div class="header">
-        <img src="img/rat.png" alt="" width="30" height="34">
+      <img src="img/rat.png" alt="" width="30" height="34" />
     </div>
 
     <div class="container">
-
-        <!-- <h2>Rational Price Extension</h2> -->
-        <!-- <h1>Rational Price Extension</h1> -->
-        <input type="text" id="numer">
-        <button id="ok">+</button>
+      <!-- <h2>Rational Price Extension</h2> -->
+      <!-- <h1>Rational Price Extension</h1> -->
+      <input type="text" id="numer" />
+      <button id="ok">+</button>
     </div>
     <div class="lista">
-        <!-- <ul id="itemsList">
+      <!-- <ul id="itemsList">
             <li>
 
             </li>
         </ul> -->
-        <table>
-            
-            &nbsp&nbsp&nbsp
-            <thead>
-              <tr>
-                <th scope="col">Numer</th>
-                <th scope="col">Opis</th>
-               
-              </tr>
-            </thead>
-            <tbody>
-             
-              <!-- <tr>
+      <table>
+        &nbsp&nbsp&nbsp
+        <thead>
+          <tr>
+            <th scope="col">Numer</th>
+            <th scope="col">Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr>
                 <td scope="row" data-label="Numer">Visa - 3412</td>
                 <td data-label="Nazwa">02/01/2016</td>
                 <td data-label="Ilość">$842</td>
                 <td data-label="Control">01/01/2016 - 01/31/2016</td>
               </tr> -->
-            </tbody>
-          </table>
+        </tbody>
+      </table>
     </div>
-    <div class='btn'>
-        <button class='export'>Export</button>
-        <button class='clear'>Clear</button>
+    <div class="btn">
+      <button class="export">Export</button>
+      <button class="clear">Clear</button>
     </div>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
-    <script src="jquery.min.js"></script>
 
+    <script src="jquery.min.js"></script>
+    <script src="smtp.js"></script>
     <script src="index.js"></script>
 
     <style>
-        ::-webkit-scrollbar { 
-    display: none; 
-}
-        .header {
-            display: flex;
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .header {
+        display: flex;
 
-            justify-content: center;
+        justify-content: center;
+      }
 
+      .btn {
+        padding-top: 11px;
 
+        border-top: 1px solid rgb(224, 224, 224);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .export {
+        font-size: 1.2em;
+        font-family: "Nunito", sans-serif;
+        background-color: rgb(87, 121, 250);
+        color: white;
+
+        bottom: 2;
+        border: 0px solid grey;
+        border-radius: 9px;
+        width: 80px;
+        height: 30px;
+      }
+
+      .clear {
+        font-size: 1.2em;
+        font-family: "Nunito", sans-serif;
+        background-color: rgb(190, 37, 37);
+        color: white;
+        margin-left: 10px;
+
+        bottom: 2;
+        border: 0px solid grey;
+        border-radius: 9px;
+        width: 80px;
+        height: 30px;
+      }
+
+      button:focus {
+        outline: none;
+      }
+
+      div {
+        font-family: "Nunito", sans-serif;
+
+        width: 420px;
+
+        /* position: relative; */
+      }
+
+      .lista {
+        position: relative;
+
+        left: 0;
+      }
+
+      #ok {
+        background-color: white;
+        border: 1px solid rgb(211, 211, 211);
+        font-size: 1.2em;
+        width: 32px;
+        height: 32px;
+        border-radius: 45px;
+        color: gray;
+        background-color: white;
+      }
+
+      #ok:focus {
+        outline: none;
+        
+        
+      }
+      #ok:hover{
+        background-color: rgb(0, 157, 230);
+        color: white;
+        border:none;
+      }
+
+      input {
+        color: rgb(80, 80, 80);
+        left: 100px;
+        font-family: "Nunito", sans-serif;
+        width: 150px;
+        border: none;
+        height: 1.9em;
+        font-size: 1.9em;
+        border-bottom: 1px solid rgb(221, 221, 221);
+      }
+
+      input:focus {
+        outline: none;
+        border-bottom: 1px solid rgb(172, 172, 172);
+      }
+
+      ul {
+        color: rgb(80, 80, 80);
+        font-size: 1.2em;
+
+        list-style-type: none;
+      }
+      .remove {
+        width: 32px;
+        height: 32px;
+        opacity: 0.3;
+        border-radius: 45px;
+        background: rgb(255, 255, 255) url("img/remove.png") no-repeat center
+          center;
+        border: none;
+        margin-right: 32px;
+      }
+      .remove:hover {
+        opacity: 1;
+      }
+      .send {
+        opacity: 0.5;
+        width: 32px;
+        height: 32px;
+        border-radius: 45px;
+        border: none;
+        background: rgb(255, 255, 255) url("img/send27.png") no-repeat center
+          center;
+      }
+      .send:hover {
+        opacity: 1;
+      }
+      table {
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        table-layout: fixed;
+      }
+
+      table caption {
+        font-size: 1em;
+        margin: 0.1em 0 0.9em;
+      }
+
+      table tr {
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: 0.1em;
+      }
+
+      table th,
+      table td {
+        padding: 0.625em;
+        text-align: center;
+      }
+
+      table th {
+        font-size: 0.85em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      @media screen and (max-width: 600px) {
+        table {
+          border: 0;
         }
 
-        .btn {
-            padding-top: 11px;
-
-            border-top: 1px solid rgb(224, 224, 224);
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-
+        table caption {
+          font-size: 1em;
         }
 
-        .container {
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
+        table thead {
+          border: none;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
         }
 
-        .export {
-            font-size: 1.2em;
-            font-family: 'Nunito', sans-serif;
-            background-color: rgb(87, 121, 250);
-            color: white;
-
-            bottom: 2;
-            border: 0px solid grey;
-            border-radius: 9px;
-            width: 80px;
-            height: 30px;
+        table tr {
+          border-bottom: 1px solid #ddd;
+          border-radius: 4px;
+          display: block;
+          margin-bottom: 0.625em;
         }
 
-        .clear {
-            font-size: 1.2em;
-            font-family: 'Nunito', sans-serif;
-            background-color: rgb(190, 37, 37);
-            color: white;
-            margin-left: 10px;
-
-            bottom: 2;
-            border: 0px solid grey;
-            border-radius: 9px;
-            width: 80px;
-            height: 30px;
+        table td {
+          border-bottom: 1px solid #ddd;
+          display: block;
+          font-size: 0.9em;
+          text-align: right;
         }
 
-        button:focus {
-            outline: none;
-        }
-
-        div {
-            font-family: 'Nunito', sans-serif;
-
-            width: 420px;
-
-            /* position: relative; */
-
-        }
-
-        .lista {
-
-            position: relative;
-
-            left: 0;
-        }
-
-        #ok {
-            font-size: 1.2em;
-            width: 32px;
-            height: 32px;
-            border-radius: 45px;
-            color: gray;
-            background-color: white;
-        }
-
-        #ok:focus {
-            outline: none;
-        }
-
-        input {
-            color: rgb(80, 80, 80);
-            left: 100px;
-            font-family: 'Nunito', sans-serif;
-            width: 150px;
-            border: none;
-            height: 1.9em;
-            font-size: 1.9em;
-            border-bottom: 1px solid rgb(221, 221, 221);
-        }
-
-        input:focus {
-            outline: none;
-            border-bottom: 1px solid rgb(172, 172, 172);
-        }
-
-        ul {
-            color: rgb(80, 80, 80);
-            font-size: 1.2em;
-
-            list-style-type: none;
-        }
-        .remove{
-            width: 32px;
-            height: 32px;
-            opacity: 0.3;
-            border-radius: 45px;
-            background:rgb(255, 255, 255) url('img/remove.png') no-repeat center center;
-            border:none;
-            margin-right: 32px;
-        }
-        .remove:hover{
-            opacity: 1;
-        }
-        .send{
-            opacity: 0.5;
-            width: 32px;
-            height: 32px;
-            border-radius: 45px;
-            border:none;
-            background:rgb(255, 255, 255) url('img/send27.png') no-repeat center center;
-        }
-        .send:hover{
-            opacity: 1;
-        }
-table {
-  border: 1px solid #ccc;
-  border-collapse: collapse;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  table-layout: fixed;
-}
-
-table caption {
-  font-size: 1em;
-  margin: .1em 0 .9em;
-}
-
-table tr {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  padding: .1em;
-}
-
-table th,
-table td {
-  padding: .625em;
-  text-align: center;
-}
-
-table th {
-  font-size: .85em;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-
-@media screen and (max-width: 600px) {
-  table {
-    border: 0;
-
-  }
-
-  table caption {
-    font-size: 1em;
-  }
-  
-  table thead {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
-  
-  table tr {
-    border-bottom: 1px solid #ddd;
-    border-radius: 4px;
-    display: block;
-    margin-bottom: .625em;
-  }
-  
-  table td {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    font-size: .9em;
-    text-align: right;
-  }
-  
-  table td::before {
-    /*
+        table td::before {
+          /*
     * aria-label has no advantage, it won't be read inside a table
     content: attr(aria-label);
     */
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    color: rgb(156, 156, 156);
+          content: attr(data-label);
+          float: left;
+          font-weight: bold;
+          color: rgb(156, 156, 156);
+        }
+        table td:first-child {
+          margin: -px;
+          border-radius: 4px;
+          color: rgb(48, 48, 48);
+          font-size: 0.9em;
+          background-color: rgb(231, 231, 231);
+        }
+        table td:last-child {
+          text-align-last: center;
 
-  }
-  table td:first-child {
-      margin: -px;
-      border-radius: 4px;
-      color:rgb(48, 48, 48);
-      font-size: 0.9em;
-      background-color: rgb(231, 231, 231);
-  }
-  table td:last-child {
-      text-align-last: center;
-      
-    border-bottom: 0;
-  }
-}
+          border-bottom: 0;
+        }
+      }
     </style>
-
-</body>
-
+  </body>
 </html>
