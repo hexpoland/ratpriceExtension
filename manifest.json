@@ -16,7 +16,8 @@
     "tabs",
     "contextMenus",
     "identity",
-    "identity.email"
+    "identity.email",
+    "tts"
   ],
   "icons": {
     "16": "img/icon16.png",

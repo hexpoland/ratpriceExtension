@@ -33,6 +33,7 @@ var config = {
   storageBucket: 'partsextension.appspot.com',
   messagingSenderId: '750984928739'
 }
+var partsListFirebase = []
 
 const app = firebase.initializeApp(config)
 const db = app.firestore()
@@ -55,6 +56,9 @@ chrome.runtime.onMessage.addListener((msg, sender, callback) => {
       })
   } else if (msg.type === 'loginFirebase') {
     let user = loginToFirebase().then(e => {
+      getFromFirebase().then(() => {
+        console.log(partsListFirebase)
+      })
       console.log('zalogowany', e)
       chrome.runtime.sendMessage({ type: 'logedIn', user: e })
     })
@@ -102,5 +106,25 @@ function logoutFromFirebase () {
     })
     .catch(function (error) {
       // An error happened.
+    })
+}
+async function getFromFirebase () {
+  db.collection('parts')
+    .get()
+    .then(e => {
+      e.docs.forEach((el, val, index) => {
+        db.collection('parts')
+          .doc(el.id)
+          .get()
+          .then(r => {
+            let part = {
+              id: el.id,
+              nazwa: r.data().nazwa,
+              cena: r.data().cena
+            }
+            // console.log(part)
+            partsListFirebase.push(part)
+          })
+      })
     })
 }

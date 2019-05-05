@@ -119,7 +119,7 @@ function init () {
   let syncState = localStorage.getItem('live')
   userId = localStorage.getItem('userId')
   userAvatar = localStorage.getItem('userAvatar')
-
+  // chrome.tts.speak('Synchronizacja włączona', { lang: 'pl-PL', rate: 1.0 })
   console.log(`Sync state is ${syncState}`)
   if (syncState === 'true') {
     $('#avatar').attr('src', userAvatar)
