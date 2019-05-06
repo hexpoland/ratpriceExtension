@@ -166,13 +166,11 @@ function toList (el) {
   // location.reload();
 }
 function szukaj (findPart) {
-  // notif.show();
-  // $('#myModal').show();
   if (findPart.lenght < 8) {
     return
   }
   findPart = findPart.toUpperCase()
-  let tmep
+  let temp
   let founded = parts.filter((el, index, arr) => {
     return el.properties.numer.match(findPart)
   })

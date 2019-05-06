@@ -1,6 +1,6 @@
 var contextMenuItem = {
   id: 'CennikRational',
-  title: 'Cennikrational',
+  title: 'CennikRational',
   contexts: ['selection']
 }
 chrome.contextMenus.create(contextMenuItem)
