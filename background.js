@@ -1,6 +1,6 @@
 var contextMenuItem = {
   id: "CennikRational",
-  title: "Cennikrational",
+  title: "CennikRational",
   contexts: ["selection"]
 };
 chrome.contextMenus.create(contextMenuItem);
@@ -91,6 +91,9 @@ async function loginToFirebase() {
     .auth()
     .signInWithPopup(provider)
     .then(e => {
+      localStorage.setItem("userId", e.user.uid);
+      localStorage.setItem("userAvatar", e.user.photoURL);
+      localStorage.setItem("live", true);
       uFirebase = e.user;
       return e.user;
     }); // Opens a popup window and returns a promise to handle errors.
@@ -103,6 +106,9 @@ function logoutFromFirebase() {
     .then(function() {
       chrome.runtime.sendMessage({ type: "logedOut" });
       console.log("LOGOUT!!!");
+      localStorage.setItem("live", false);
+      localStorage.setItem("userId", "");
+      localStorage.setItem("userAvatar", "");
     })
     .catch(function(error) {
       // An error happened.

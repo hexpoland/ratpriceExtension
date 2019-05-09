@@ -1,465 +1,461 @@
 <html>
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
 
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
+  <body>
+    <div id="page">
+      <div class="preHeader">
+        <img src="" alt="" id="avatar" />
+        <p>Sync</p>
+        <label class="switch">
+          <input id="syncButton" type="checkbox" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="header">
+        <img src="img/rat.png" alt="" width="30" height="34" />
+      </div>
 
-</head>
-
-<body>
-  <div id="page">
-    <div class="preHeader">
-      <img src="" alt="" id="avatar">
-      <p>Sync</p>
-      <label class="switch">
-        <input id="syncButton" type="checkbox">
-        <span class="slider round"></span>
-      </label>
-    </div>
-    <div class="header">
-
-      <img src="img/rat.png" alt="" width="30" height="34" />
-    </div>
-
-    <div class="container">
-      <!-- <h2>Rational Price Extension</h2> -->
-      <!-- <h1>Rational Price Extension</h1> -->
-      <input type="text" id="numer" placeholder="numer" />
-      <button id="ok">+</button>
-    </div>
-    <div class="lista">
-      <!-- <ul id="itemsList">
+      <div class="container">
+        <!-- <h2>Rational Price Extension</h2> -->
+        <!-- <h1>Rational Price Extension</h1> -->
+        <input type="text" id="numer" placeholder="numer" />
+        <button id="ok">+</button>
+      </div>
+      <div class="lista">
+        <!-- <ul id="itemsList">
             <li>
             </li>
         </ul> -->
-      <table>
-        &nbsp&nbsp&nbsp
-        <thead>
-          <tr>
-            <th scope="col">Numer</th>
-            <th scope="col">Opis</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- <tr>
+        <table>
+          &nbsp&nbsp&nbsp
+          <thead>
+            <tr>
+              <th scope="col">Numer</th>
+              <th scope="col">Opis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr>
                 <td scope="row" data-label="Numer">Visa - 3412</td>
                 <td data-label="Nazwa">02/01/2016</td>
                 <td data-label="Ilość">$842</td>
                 <td data-label="Control">01/01/2016 - 01/31/2016</td>
               </tr> -->
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
+      <div class="btn">
+        <button class="export">Export</button>
+        <button class="clear">Clear</button>
+      </div>
     </div>
-    <div class="btn">
-      <button class="export">Export</button>
-      <button class="clear">Clear</button>
-    </div>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
 
-  </div>
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
+    <script src="jquery.min.js"></script>
+    <script src="smtp.js"></script>
+    <script src="index.js"></script>
 
-  <script src="jquery.min.js"></script>
-  <script src="smtp.js"></script>
-  <script src="index.js"></script>
-
-  <style>
-    #page {
-      width: 100%;
-      height: auto;
-    }
-
-    * {
-      -webkit-font-smoothing: antialiased;
-    }
-
-    ::-webkit-scrollbar {
-      display: none;
-    }
-
-    ::-webkit-input-placeholder {
-      /* Chrome/Opera/Safari */
-      color: rgb(211, 211, 211);
-    }
-
-
-
-    .preHeader {
-
-      width: 100%;
-      text-align: right;
-    }
-
-    #avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 45px;
-      position: absolute;
-      left: 10px;
-      top: 8px;
-    }
-
-    @keyframes easeIn {
-      from {
-        opacity: 0
+    <style>
+      #page {
+        width: 100%;
+        height: auto;
       }
 
-      to {
-        opacity: 1
+      * {
+        -webkit-font-smoothing: antialiased;
       }
-    }
 
-    .ease_in {
-      animation: easeIn;
-      animation-duration: 3s;
-    }
+      ::-webkit-scrollbar {
+        display: none;
+      }
 
-    .preHeader {
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 35px;
-      position: fixed;
-      background-color: white;
-      padding-top: 15px;
-      padding-right: 1px;
-      z-index: 9;
-      margin-bottom: 20px;
-      box-shadow: 5px 5px 20px rgb(230, 230, 230);
-    }
+      ::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: rgb(211, 211, 211);
+      }
 
-    .preHeader>p {
-      position: absolute;
-      display: inline;
-      margin: 10px;
-      align-self: center;
-      right: 50px;
-      top: 8px;
-      color: gray;
-    }
+      .preHeader {
+        width: 100%;
+        text-align: right;
+      }
 
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 36px;
-      height: 22px;
-      margin-right: 10px;
-    }
+      #avatar {
+        width: 30px;
+        height: 32px;
+        border-radius: 45px;
+        position: absolute;
+        left: 10px;
+        top: 8px;
+      }
 
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
+      @keyframes easeIn {
+        from {
+          opacity: 0;
+        }
 
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      -webkit-transition: .4s;
-      transition: .4s;
-    }
+        to {
+          opacity: 1;
+        }
+      }
 
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 14px;
-      width: 14px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      -webkit-transition: .4s;
-      transition: .4s;
-    }
+      .ease_in {
+        animation: easeIn;
+        animation-duration: 3s;
+      }
 
-    .slider.round {
-      border-radius: 34px;
-    }
+      .preHeader {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 35px;
+        position: fixed;
+        background-color: white;
+        padding-top: 15px;
+        padding-right: 1px;
+        z-index: 9;
+        margin-bottom: 20px;
+        box-shadow: 5px 5px 20px rgb(230, 230, 230);
+      }
 
-    .slider.round:before {
-      border-radius: 50%;
-    }
+      .preHeader > p {
+        position: absolute;
+        display: inline;
+        margin: 10px;
+        align-self: center;
+        right: 50px;
+        top: 8px;
+        color: gray;
+      }
 
-    input:checked+.slider {
-      background-color: #2196F3;
-    }
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 36px;
+        height: 22px;
+        margin-right: 10px;
+      }
 
-    input:focus+.slider {
-      box-shadow: 0 0 1px #2196F3;
-    }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
 
-    input:checked+.slider:before {
-      -webkit-transform: translateX(15px);
-      -ms-transform: translateX(15px);
-      transform: translateX(15px);
-    }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
 
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 14px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
 
-    .header {
-      margin-top: 60px;
-      display: flex;
-      justify-content: center;
-    }
+      .slider.round {
+        border-radius: 34px;
+      }
 
-    .btn {
-      padding-top: 11px;
-      border-top: 1px solid rgb(224, 224, 224);
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+      .slider.round:before {
+        border-radius: 50%;
+      }
 
-    .container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+      input:checked + .slider {
+        background-color: #2196f3;
+      }
 
-    .export {
-      font-size: 1.2em;
-      font-family: "Nunito", sans-serif;
-      background-color: rgb(87, 121, 250);
-      color: white;
-      bottom: 2;
-      border: 0px solid grey;
-      border-radius: 9px;
-      width: 80px;
-      height: 30px;
-    }
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196f3;
+      }
 
-    .clear {
-      font-size: 1.2em;
-      font-family: "Nunito", sans-serif;
-      background-color: rgb(190, 37, 37);
-      color: white;
-      margin-left: 10px;
-      bottom: 2;
-      border: 0px solid grey;
-      border-radius: 9px;
-      width: 80px;
-      height: 30px;
-    }
+      input:checked + .slider:before {
+        -webkit-transform: translateX(15px);
+        -ms-transform: translateX(15px);
+        transform: translateX(15px);
+      }
 
-    .clear:hover {
-      background-color: rgb(146, 28, 28);
-    }
+      .header {
+        margin-top: 60px;
+        display: flex;
+        justify-content: center;
+      }
 
-    .export:hover {
-      background-color: rgb(63, 92, 197);
-    }
+      .btn {
+        padding-top: 11px;
+        border-top: 1px solid rgb(224, 224, 224);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-    button:focus {
-      outline: none;
-    }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-    div {
-      font-family: "Nunito", sans-serif;
-      width: 420px;
-      /* position: relative; */
-    }
+      .export {
+        font-size: 1.2em;
+        font-family: "Nunito", sans-serif;
+        background-color: rgb(87, 121, 250);
+        color: white;
+        bottom: 2;
+        border: 0px solid grey;
+        border-radius: 9px;
+        width: 80px;
+        height: 30px;
+      }
 
-    .lista {
-      position: relative;
-      left: 0;
-    }
+      .clear {
+        font-size: 1.2em;
+        font-family: "Nunito", sans-serif;
+        background-color: rgb(190, 37, 37);
+        color: white;
+        margin-left: 10px;
+        bottom: 2;
+        border: 0px solid grey;
+        border-radius: 9px;
+        width: 80px;
+        height: 30px;
+      }
 
-    #ok {
-      background-color: white;
-      border: 1px solid rgb(211, 211, 211);
-      font-size: 1.2em;
-      width: 32px;
-      height: 32px;
-      border-radius: 45px;
-      color: gray;
-      background-color: white;
-    }
+      .clear:hover {
+        background-color: rgb(146, 28, 28);
+      }
 
-    #ok:focus {
-      outline: none;
+      .export:hover {
+        background-color: rgb(63, 92, 197);
+      }
 
+      button:focus {
+        outline: none;
+      }
 
-    }
+      div {
+        font-family: "Nunito", sans-serif;
+        width: 420px;
+        /* position: relative; */
+      }
 
-    #ok:hover {
-      background-color: rgb(0, 157, 230);
-      color: white;
-      border: none;
-    }
+      .lista {
+        position: relative;
+        left: 0;
+      }
 
-    @keyframes inputAnimIn {
-      from {
+      #ok {
+        background-color: white;
+        border: 1px solid rgb(211, 211, 211);
+        font-size: 1.2em;
+        width: 32px;
+        height: 32px;
+        border-radius: 45px;
+        color: gray;
+        background-color: white;
+      }
+
+      #ok:focus {
+        outline: none;
+      }
+
+      #ok:hover {
+        background-color: rgb(0, 157, 230);
+        color: white;
+        border: none;
+      }
+
+      @keyframes inputAnimIn {
+        from {
+          width: 100px;
+        }
+
+        to {
+          width: 150px;
+        }
+      }
+
+      @keyframes inputAnimOut {
+        from {
+          width: 150px;
+        }
+
+        to {
+          width: 100px;
+        }
+      }
+
+      input {
+        color: rgb(80, 80, 80);
+        left: 100px;
+        font-family: "Nunito", sans-serif;
         width: 100px;
+        border: none;
+        height: 1.9em;
+        font-size: 1.9em;
+        border-bottom: 1px solid rgb(221, 221, 221);
       }
 
-      to {
+      input:focus {
+        outline: none;
+        animation: inputAnimIn;
+        animation-duration: 2s;
+        width: 150px;
+        border-bottom: 1px solid rgb(172, 172, 172);
+      }
+
+      input:not(:placeholder-shown) {
         width: 150px;
       }
-    }
 
-    @keyframes inputAnimOut {
-      from {
-        width: 150px;
+      ul {
+        color: rgb(80, 80, 80);
+        font-size: 1.2em;
+        list-style-type: none;
       }
 
-      to {
-        width: 100px;
+      .remove {
+        width: 32px;
+        height: 32px;
+        opacity: 0.3;
+        border-radius: 45px;
+        background: rgb(255, 255, 255) url("img/remove.png") no-repeat center
+          center;
+        border: none;
+        margin-right: 32px;
       }
-    }
 
-    input {
-      color: rgb(80, 80, 80);
-      left: 100px;
-      font-family: "Nunito", sans-serif;
-      width: 100px;
-      border: none;
-      height: 1.9em;
-      font-size: 1.9em;
-      border-bottom: 1px solid rgb(221, 221, 221);
-    }
+      .remove:hover {
+        opacity: 1;
+      }
 
-    input:focus {
+      .send {
+        opacity: 0.5;
+        width: 32px;
+        height: 32px;
+        border-radius: 45px;
+        border: none;
+        background: rgb(255, 255, 255) url("img/send27.png") no-repeat center
+          center;
+      }
 
-      outline: none;
-      animation: inputAnimIn;
-      animation-duration: 2s;
-      width: 150px;
-      border-bottom: 1px solid rgb(172, 172, 172);
-    }
+      .send:hover {
+        opacity: 1;
+      }
 
-    input:not(:placeholder-shown) {
-      width: 150px;
-    }
-
-
-    ul {
-      color: rgb(80, 80, 80);
-      font-size: 1.2em;
-      list-style-type: none;
-    }
-
-    .remove {
-      width: 32px;
-      height: 32px;
-      opacity: 0.3;
-      border-radius: 45px;
-      background: rgb(255, 255, 255) url("img/remove.png") no-repeat center center;
-      border: none;
-      margin-right: 32px;
-    }
-
-    .remove:hover {
-      opacity: 1;
-    }
-
-    .send {
-      opacity: 0.5;
-      width: 32px;
-      height: 32px;
-      border-radius: 45px;
-      border: none;
-      background: rgb(255, 255, 255) url("img/send27.png") no-repeat center center;
-    }
-
-    .send:hover {
-      opacity: 1;
-    }
-
-    table {
-      border: 1px solid #ccc;
-      border-collapse: collapse;
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      table-layout: fixed;
-    }
-
-    table caption {
-      font-size: 1em;
-      margin: 0.1em 0 0.9em;
-    }
-
-    table tr {
-      background-color: #ffffff;
-      border: 1px solid #ddd;
-      padding: 0.1em;
-    }
-
-    table th,
-    table td {
-      padding: 0.625em;
-      text-align: center;
-    }
-
-    table th {
-      font-size: 0.85em;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    @media screen and (max-width: 600px) {
       table {
-        border: 0;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        table-layout: fixed;
       }
 
       table caption {
         font-size: 1em;
-      }
-
-      table thead {
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
+        margin: 0.1em 0 0.9em;
       }
 
       table tr {
-        border-bottom: 1px solid #ddd;
-        border-radius: 4px;
-        display: block;
-        margin-bottom: 0.625em;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        padding: 0.1em;
       }
 
+      table th,
       table td {
-        border-bottom: 1px solid #ddd;
-        display: block;
-        font-size: 0.9em;
-        text-align: right;
+        padding: 0.625em;
+        text-align: center;
       }
 
-      table td::before {
-        /*
+      table th {
+        font-size: 0.85em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      @media screen and (max-width: 600px) {
+        table {
+          border: 0;
+        }
+
+        table caption {
+          font-size: 1em;
+        }
+
+        table thead {
+          border: none;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+        }
+
+        table tr {
+          border-bottom: 1px solid #ddd;
+          border-radius: 4px;
+          display: block;
+          margin-bottom: 0.625em;
+        }
+
+        table td {
+          border-bottom: 1px solid #ddd;
+          display: block;
+          font-size: 0.9em;
+          text-align: right;
+        }
+
+        table td::before {
+          /*
     * aria-label has no advantage, it won't be read inside a table
     content: attr(aria-label);
     */
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        color: rgb(156, 156, 156);
-      }
+          content: attr(data-label);
+          float: left;
+          font-weight: bold;
+          color: rgb(156, 156, 156);
+        }
 
-      table td:first-child {
-        margin: -px;
-        border-radius: 4px;
-        color: rgb(48, 48, 48);
-        font-size: 0.9em;
-        background-color: rgb(231, 231, 231);
-      }
+        table td:first-child {
+          margin: -px;
+          border-radius: 4px;
+          color: rgb(48, 48, 48);
+          font-size: 0.9em;
+          background-color: rgb(231, 231, 231);
+        }
 
-      table td:last-child {
-        text-align-last: center;
-        border-bottom: 0;
+        table td:last-child {
+          text-align-last: center;
+          border-bottom: 0;
+        }
       }
-    }
-  </style>
-</body>
-
+    </style>
+  </body>
 </html>
