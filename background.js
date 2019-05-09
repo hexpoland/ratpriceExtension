@@ -45,6 +45,8 @@ chrome.runtime.onMessage.addListener((msg, sender, callback) => {
       .doc(msg.numer)
       .set({
         // numer: msg.numer,
+        user: msg.user,
+        userAvatar: msg.userAvatar,
         nazwa: msg.nazwa,
         cena: msg.cena
       })
@@ -91,6 +93,7 @@ async function loginToFirebase() {
     .auth()
     .signInWithPopup(provider)
     .then(e => {
+      localStorage.setItem("userEmail", e.user.email);
       localStorage.setItem("userId", e.user.uid);
       localStorage.setItem("userAvatar", e.user.photoURL);
       localStorage.setItem("live", true);

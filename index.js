@@ -1,5 +1,5 @@
 var tokenSmtp = "063fe860-cff3-4f1f-bb21-bbf4177f74b3";
-var userId, userAvatar;
+var userId, userAvatar, userEmail;
 var parts = [];
 var cennik = $.getJSON("cennik.json", e => {
   parts = e.features;
@@ -123,6 +123,7 @@ function init() {
   let syncState = localStorage.getItem("live");
   userId = localStorage.getItem("userId");
   userAvatar = localStorage.getItem("userAvatar");
+  userEmail = localStorage.getItem("userEmail");
   // chrome.tts.speak('Synchronizacja włączona', { lang: 'pl-PL', rate: 1.0 })
   console.log(`Sync state is ${syncState}`);
   if (syncState === "true") {
@@ -147,6 +148,8 @@ function toList(el) {
   });
   let jsonEl = {
     type: "firebase",
+    user: userEmail,
+    userAvatar: userAvatar,
     numer: el.properties.numer,
     nazwa: el.properties.nazwa,
     cena: el.properties.cena
