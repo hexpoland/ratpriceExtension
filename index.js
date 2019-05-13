@@ -152,11 +152,12 @@ function toList(el) {
   );
   let numer1 = el.properties.numer;
   let nazwa = el.properties.nazwa + "    " + el.properties.cena;
-  chrome.storage.sync.set({ [numer1]: nazwa }, function() {
-    console.log("Value is set to ");
-  });
+  // chrome.storage.sync.set({ [numer1]: nazwa }, function() {
+  //   console.log("Value is set to ");
+  // });
   let jsonEl = {
     type: "firebase",
+    userId: userId,
     user: userEmail,
     userAvatar: userAvatar,
     numer: el.properties.numer,
@@ -185,77 +186,75 @@ function szukaj(findPart) {
   //definicja cennika tutaj lepszy perfomrance
   let cennik = $.getJSON("cennik.json", e => {
     parts = e.features;
-    // $('#ok').show();
-    // console.log(parts)
-  });
-  if (findPart.lenght < 8) {
-    return;
-  }
-  findPart = findPart.toUpperCase();
-  let temp;
-  let founded = parts.filter((el, index, arr) => {
-    return el.properties.numer.match(findPart);
-  });
-  console.log(founded);
-  founded.every((el, ind, arr) => {
-    if (el.properties.cena > 0) {
-      console.log("Cena niezerowa");
-      // notif.options.items[0].title = el.properties.numer;
-      // notif.options.items[0].message = el.properties.nazwa + '   ' + el.properties.cena;
-      // notif.show();
-      toList(el);
-      alert(
-        "Rational Price Extension\n\n" +
-          "\tNumer:  " +
-          el.properties.numer +
-          "\n" +
-          "\tNazwa:  " +
-          el.properties.nazwa +
-          "\n" +
-          "\tCena:   " +
-          el.properties.cena +
-          ",- netto\n\n" +
-          "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
-      );
-    } else {
-      if (el.properties.Informacje) {
-        console.log("zastapione" + el.properties.Informacje);
-        let newNumber = el.properties.Informacje.match(
-          /\d\d.\d\d.\d\d\d[A-Z]?/g
+    if (findPart.lenght < 8) {
+      return;
+    }
+    findPart = findPart.toUpperCase();
+    let temp;
+    let founded = parts.filter((el, index, arr) => {
+      return el.properties.numer.match(findPart);
+    });
+    console.log(founded);
+    founded.every((el, ind, arr) => {
+      if (el.properties.cena > 0) {
+        console.log("Cena niezerowa");
+        // notif.options.items[0].title = el.properties.numer;
+        // notif.options.items[0].message = el.properties.nazwa + '   ' + el.properties.cena;
+        // notif.show();
+        toList(el);
+        alert(
+          "Rational Price Extension\n\n" +
+            "\tNumer:  " +
+            el.properties.numer +
+            "\n" +
+            "\tNazwa:  " +
+            el.properties.nazwa +
+            "\n" +
+            "\tCena:   " +
+            el.properties.cena +
+            ",- netto\n\n" +
+            "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
         );
-        console.log(newNumber);
-        if (newNumber === null) {
-          newNumber = el.properties.Informacje.match(
-            /\d\d\d\d.\d\d\d\d[A-Z]?/g
+      } else {
+        if (el.properties.Informacje) {
+          console.log("zastapione" + el.properties.Informacje);
+          let newNumber = el.properties.Informacje.match(
+            /\d\d.\d\d.\d\d\d[A-Z]?/g
           );
-        }
-
-        temp = parts.filter(el => {
-          return $.isArray(newNumber)
-            ? el.properties.numer.match(newNumber[0])
-            : el.properties.numer.match(newNumber);
-        });
-        temp.forEach(el => {
-          if (el.properties.cena != "0") {
-            // alert('Znalaziono:  ' + el.properties.nazwa + ' Cena: ' + el.properties.cena)
-            toList(el);
-            alert(
-              "Rational Price Extension\n\n" +
-                "\tNumer:  " +
-                el.properties.numer +
-                "\n" +
-                "\tNazwa:  " +
-                el.properties.nazwa +
-                "\n" +
-                "\tCena:   " +
-                el.properties.cena +
-                ",- netto\n\n" +
-                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+          console.log(newNumber);
+          if (newNumber === null) {
+            newNumber = el.properties.Informacje.match(
+              /\d\d\d\d.\d\d\d\d[A-Z]?/g
             );
           }
-        });
+
+          temp = parts.filter(el => {
+            return $.isArray(newNumber)
+              ? el.properties.numer.match(newNumber[0])
+              : el.properties.numer.match(newNumber);
+          });
+          temp.forEach(el => {
+            if (el.properties.cena != "0") {
+              // alert('Znalaziono:  ' + el.properties.nazwa + ' Cena: ' + el.properties.cena)
+              toList(el);
+              alert(
+                "Rational Price Extension\n\n" +
+                  "\tNumer:  " +
+                  el.properties.numer +
+                  "\n" +
+                  "\tNazwa:  " +
+                  el.properties.nazwa +
+                  "\n" +
+                  "\tCena:   " +
+                  el.properties.cena +
+                  ",- netto\n\n" +
+                  "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+              );
+            }
+          });
+        }
       }
-    }
+    });
   });
 }
 function sendEmail(to, from, subject, body) {
