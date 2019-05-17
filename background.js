@@ -27,35 +27,27 @@ var config = {
   messagingSenderId: '750984928739'
 }
 var partsListFirebase = []
+var allPartsListFirebase = []
 
 const app = firebase.initializeApp(config)
+
 const db = app.firestore()
+const users = db.collection('users')
 
 chrome.runtime.onMessage.addListener((msg, sender, callback) => {
   console.log(msg)
   if (msg.type === 'firebase') {
-    db.collection('users')
-      .doc(msg.userId)
-      .collection('partslist')
-      .doc(msg.numer)
-      .set({
-        // numer: msg.numer,
-        user: msg.user,
-        userAvatar: msg.userAvatar,
-        nazwa: msg.nazwa,
-        cena: msg.cena
-      })
-      .then(function () {
-        console.log('Document written to firebase')
-      })
-      .catch(function (error) {
-        console.error('Error adding document: ', error)
-      })
+    addToFirebase(msg)
   } else if (msg.type === 'loginFirebase') {
     let user = loginToFirebase().then(e => {
-      getFromFirebase().then(() => {
-        console.log(partsListFirebase)
-      })
+      getFromFirebase()
+        .then(() => {
+          console.log(partsListFirebase)
+        })
+        .then(() => {
+          getAllFromFirebase()
+        })
+
       console.log('zalogowany', e)
       chrome.runtime.sendMessage({ type: 'logedIn', user: e })
     })
@@ -121,16 +113,40 @@ function logoutFromFirebase () {
       // An error happened.
     })
 }
+async function addToFirebase (msg) {
+  users.doc(msg.user).set({
+    avatar: msg.userAvatar,
+    id: msg.userId
+  })
+
+  users
+    .doc(msg.user)
+    .collection('partslist')
+    .doc(msg.numer)
+    .set({
+      // numer: msg.numer,
+      user: msg.user,
+      userAvatar: msg.userAvatar,
+      nazwa: msg.nazwa,
+      cena: msg.cena
+    })
+    .then(function () {
+      console.log('Document written to firebase')
+    })
+    .catch(function (error) {
+      console.error('Error adding document: ', error)
+    })
+}
 async function getFromFirebase () {
   partsListFirebase = [] // clear to dont repeat records
-  db.collection('users')
-    .doc(localStorage.getItem('userId'))
+  users
+    .doc(localStorage.getItem('userEmail'))
     .collection('partslist')
     .get()
     .then(e => {
       e.docs.forEach((el, val, index) => {
-        db.collection('users')
-          .doc(localStorage.getItem('userId'))
+        users
+          .doc(localStorage.getItem('userEmail'))
           .collection('partslist')
           .doc(el.id)
           .get()
@@ -152,8 +168,8 @@ async function getFromFirebase () {
     })
 }
 async function removeFromFirebase (itemId) {
-  db.collection('users')
-    .doc(localStorage.getItem('userId'))
+  users
+    .doc(localStorage.getItem('userEmail'))
     .collection('partslist')
     .doc(itemId)
     .delete()
@@ -162,5 +178,43 @@ async function removeFromFirebase (itemId) {
     })
     .catch(function (error) {
       console.error('Error removing document: ', error)
+    })
+}
+async function getAllFromFirebase () {
+  users
+    .get()
+    .then(e => {
+      e.forEach(n => {
+        users
+          .doc(n.id)
+          .collection('partslist')
+          .get()
+          .then(z => {
+            z.docs.forEach((el, value, index) => {
+              users
+                .doc(n.id)
+                .collection('partslist')
+                .doc(el.id)
+                .get()
+                .then(r => {
+                  let part = {
+                    user: r.data().user,
+                    parts: {
+                      id: el.id,
+                      user: r.data().user,
+                      userAvatar: r.data().userAvatar,
+                      nazwa: r.data().nazwa,
+                      cena: r.data().cena
+                    }
+                  }
+                  // console.log(part)
+                  allPartsListFirebase.push(part)
+                })
+            })
+          })
+      })
+    })
+    .then(() => {
+      console.log(allPartsListFirebase)
     })
 }
